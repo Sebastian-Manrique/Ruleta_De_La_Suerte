@@ -8,7 +8,8 @@ public class Ruleta {
         //Turno jugador 1, gira ruleta, pide letra (bucle), panel, termina turno.
     }
     //paneles tambien
-    private static void ruleta() { //numero aleatorio
+    private static void ruleta() { /*numero aleatorio, los valores en los
+    que puede caer la ruleta son 0, 25, 50, 75, 100, 150 o la quiebra.*/
     
     }
     private static void turno() { // El turno sera un do while
