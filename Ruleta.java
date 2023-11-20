@@ -18,6 +18,24 @@ public class Ruleta {
     //paneles tambien
     private static void ruleta() { /*numero aleatorio, los valores en los
 	    que puede caer la ruleta son 0, 25, 50, 75, 100, 150 o la quiebra.*/
+	     int coin =  rnd.nextInt(11);// Retorna un número aleatorio entre 0 y 10
+        switch(coin) {
+        case 1:
+            j1 +=0;
+        case 2:
+            pj += 25;
+        case 3:
+            pj += 50;
+        case 4:
+            pj += 75;
+        case 5:
+            pj += 100;
+        case 6:
+            pj +=125;
+        defalut
+        
+        }
+	
 	System.out.println("              @@@@@@@@@@@@@             \r\n" //Dibujo de la ruleta hecho.
 			+ "         @@     @@@@@@@@@    ,@@        \r\n"
 			+ "      /@   @@  @@   @   @@ ,@@   @      \r\n"
