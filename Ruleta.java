@@ -1,5 +1,6 @@
 //Creado por Sebastian Manrique e Ignacio Delgado
 import java.util.Scanner;
+import java.util.Random;
 public class Ruleta {
 	static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
