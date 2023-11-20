@@ -54,8 +54,22 @@ public class Ruleta {
 			+ "\n              Gira la ruleta 🎰");
     
     }
-    private static void turno() { // El turno sera un do while
-        
+    private static void jugarTurno() {
+        System.out.println("Turno del Jugador " + turnoActual);
+        // Lógica del turno, acciones del jugador, etc.
+
+        // Cambiar al siguiente turno
+        cambiarTurno();
+    }
+
+    private static void cambiarTurno() {
+        turnoActual = (turnoActual % 3) + 1;  // Alternar entre los jugadores 
+    }
+
+    private static boolean juegoTerminado() {
+        // Lógica para determinar si el juego ha terminado
+        // Puedes usar condiciones específicas según tu juego
+        return false;  // Cambiar esto con la lógica real
     }
     private static void panel() { //Panel de palabras
         
