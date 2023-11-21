@@ -12,6 +12,13 @@ public class PanelRuleta {
             } else {
                 resultado.append("*");
             }
+            /*En Java, el método append() pertenece a la clase StringBuilder,
+            que se utiliza para construir cadenas de caracteres de manera eficiente
+            al permitir la modificación de la cadena sin crear nuevos objetos de cadena
+            en cada operación.
+            La función append() se utiliza para agregar contenido al final de un StringBuilder.
+            Puede aceptar diferentes tipos de datos como parámetro y los convierte automáticamente
+            a cadenas de caracteres para su concatenación.*/
         }
         
         return resultado.toString();
