@@ -51,51 +51,10 @@ public class RuletaDeLaSuerte {
             
             // Mover la línea dentro del bucle while
             String resultadoTexto = reemplazarLetras(panel); // Cambio de nombre de la variable local
-            
             System.out.println("Turno del jugador " + (turnoActual + 1)); // Imprime a qué jugador le toca
             System.out.println("Frase: " + resultadoTexto + " pista: " + pista); // Imprime la frase
-
             int resultadoRuleta = girarRuleta(); // Inicia mecánica de "ruleta"
-            System.out.println(""
-            		+ "                                                ..:-=+====--::.                                                   \r\n"//Dibujo de la ruleta
-            		+ "                                          .-=++++=-:::**@+#---=++++-:                                             \r\n"
-            		+ "                                      .-++=-.          :@-         :=+*=:                                         \r\n"
-            		+ "                                   .=*+:                @              .=++-                                      \r\n"
-            		+ "                                 -*+.                   @                  -*+.                                   \r\n"
-            		+ "                               =%*                      @                    .+*:                                 \r\n"
-            		+ "                             -#- =*:                    @                    :*=+*.                               \r\n"
-            		+ "                           .*=    .+*:                  @                  .*+.  :*=                              \r\n"
-            		+ "                          =#.       .+*.                @                .+*.      =*.                            \r\n"
-            		+ "                         ++           .*+.              @              .+#:         :#.                           \r\n"
-            		+ "                        *=              :*=             @             =*:            .#.                          \r\n"
-            		+ "                       ++                 -#-           @           -#-               :#.                         \r\n"
-            		+ "                      =*                    -#-         @         :*=                  :#                         \r\n"
-            		+ "                     .%.                      =*:       @       .*+.                    +=                        \r\n"
-            		+ "                     +=                        .+*.     @     .+*.                      .%                        \r\n"
-            		+ "                     %.                          .*+.   @   .+*:                         +=                       \r\n"
-            		+ "                    -*                             :*+. @  =*-                           -*                       \r\n"
-            		+ "                    =+                               :*=@-#-                             .%                       \r\n"
-            		+ "                   :##+++++++++++++++++++++++++++++++++%@@++++++++++++++++++++++++++++++++@=                      \r\n"
-            		+ "                    +=                               .*+@=*:                              @                       \r\n"
-            		+ "                    =+                             .+*. @ .+*:                           :#                       \r\n"
-            		+ "                    :#                            =*:   @   .+*.                         -*                       \r\n"
-            		+ "                     %.                         =#-     @     .*+.                       #:                       \r\n"
-            		+ "                     =+                       -#-       @       :*=                     :#                        \r\n"
-            		+ "                      %:                    :*=         @         -#-                   #:                        \r\n"
-            		+ "                      :%.                 .*+.          @           -#-                ++                         \r\n"
-            		+ "                       -#               .+*.            @             =*:             =#                          \r\n"
-            		+ "                        -#.            =*:              @              .+*.          =*                           \r\n"
-            		+ "                         :#.         =#-                @                .*+.       +*                            \r\n"
-            		+ "                          .#=      -#=                  @                  :*+.   .*-                             \r\n"
-            		+ "                            =*:  :*=                    @                    :*= +*.                              \r\n"
-            		+ "                             .*+*+.                     @                      ##-                                \r\n"
-            		+ "                               .+*:                     @                   .=*-                                  \r\n"
-            		+ "                                 .=*=.                  @                 -*+:                                    \r\n"
-            		+ "                                    .=*+-               @             :=*+-                                       \r\n"
-            		+ "                                       .-+++=:.         @        :-++*=.                                          \r\n"
-            		+ "                                            .-=++++++===@==++++++=:                                               \r\n"
-            		+ "                                                     .                                                            \r\n"
-            		+ "\nLa ruleta ha caido en: " + resultadoRuleta);
+            
 
             if (resultadoRuleta == 0) { // Si cae un quiebra
                 System.out.println("¡Quiebra! El jugador pierde todo el dinero ganado.");
@@ -111,9 +70,13 @@ public class RuletaDeLaSuerte {
                         String respuesta = scanner.nextLine();
                         if (respuesta.equals(panel)) { // verifica la frase
                             System.out.println("Enhorabuena, ¡has acertado el panel! " + panel);
+                            adivinoCorrectamente = true;
                             hayGanador();
                             panelNum++;
                             panelActual();
+                            resultadoTexto = reemplazarLetras(panel);
+                            System.out.println("Frase: " + resultadoTexto + " pista: " + pista);
+                            girarRuleta();
                         } else {
                             System.out.println("No has acertado.");
                             siguienteTurno();
@@ -145,13 +108,18 @@ public class RuletaDeLaSuerte {
                 } while (adivinoCorrectamente && FRASE.indexOf("*") != -1); // Continuar mientras adivine correctamente y la frase no esté completamente revelada
 
                 if (FRASE.indexOf("*") == -1) {
-                    System.out.println("¡Felicidades! Has adivinado la frase: " + panel);
+                	adivinoCorrectamente = true;
+                	System.out.println("¡Felicidades! Has adivinado la frase: " + panel);
                     hayGanador();
                     panelNum++;
                     panelActual();
-                }
-
-                siguienteTurno();
+                    resultadoTexto = reemplazarLetras(panel);
+                    System.out.println("Frase: " + resultadoTexto + " pista: " + pista);
+                    girarRuleta();
+                    } else {
+                        System.out.println("No has acertado.");
+                        siguienteTurno();
+                    }
             }
         }
 
@@ -165,6 +133,46 @@ public class RuletaDeLaSuerte {
 
     static int girarRuleta() {			//Sistema aleatorio para ganancia o quiebra
         Random random = new Random();
+        System.out.println("\n"
+        		+ "                                                ..:-=+====--::.                                                   \r\n"//Dibujo de la ruleta
+        		+ "                                          .-=++++=-:::**@+#---=++++-:                                             \r\n"
+        		+ "                                      .-++=-.          :@-         :=+*=:                                         \r\n"
+        		+ "                                   .=*+:                @              .=++-                                      \r\n"
+        		+ "                                 -*+.                   @                  -*+.                                   \r\n"
+        		+ "                               =%*                      @                    .+*:                                 \r\n"
+        		+ "                             -#- =*:                    @                    :*=+*.                               \r\n"
+        		+ "                           .*=    .+*:                  @                  .*+.  :*=                              \r\n"
+        		+ "                          =#.       .+*.                @                .+*.      =*.                            \r\n"
+        		+ "                         ++           .*+.              @              .+#:         :#.                           \r\n"
+        		+ "                        *=              :*=             @             =*:            .#.                          \r\n"
+        		+ "                       ++                 -#-           @           -#-               :#.                         \r\n"
+        		+ "                      =*                    -#-         @         :*=                  :#                         \r\n"
+        		+ "                     .%.                      =*:       @       .*+.                    +=                        \r\n"
+        		+ "                     +=                        .+*.     @     .+*.                      .%                        \r\n"
+        		+ "                     %.                          .*+.   @   .+*:                         +=                       \r\n"
+        		+ "                    -*                             :*+. @  =*-                           -*                       \r\n"
+        		+ "                    =+                               :*=@-#-                             .%                       \r\n"
+        		+ "                   :##+++++++++++++++++++++++++++++++++%@@++++++++++++++++++++++++++++++++@=                      \r\n"
+        		+ "                    +=                               .*+@=*:                              @                       \r\n"
+        		+ "                    =+                             .+*. @ .+*:                           :#                       \r\n"
+        		+ "                    :#                            =*:   @   .+*.                         -*                       \r\n"
+        		+ "                     %.                         =#-     @     .*+.                       #:                       \r\n"
+        		+ "                     =+                       -#-       @       :*=                     :#                        \r\n"
+        		+ "                      %:                    :*=         @         -#-                   #:                        \r\n"
+        		+ "                      :%.                 .*+.          @           -#-                ++                         \r\n"
+        		+ "                       -#               .+*.            @             =*:             =#                          \r\n"
+        		+ "                        -#.            =*:              @              .+*.          =*                           \r\n"
+        		+ "                         :#.         =#-                @                .*+.       +*                            \r\n"
+        		+ "                          .#=      -#=                  @                  :*+.   .*-                             \r\n"
+        		+ "                            =*:  :*=                    @                    :*= +*.                              \r\n"
+        		+ "                             .*+*+.                     @                      ##-                                \r\n"
+        		+ "                               .+*:                     @                   .=*-                                  \r\n"
+        		+ "                                 .=*=.                  @                 -*+:                                    \r\n"
+        		+ "                                    .=*+-               @             :=*+-                                       \r\n"
+        		+ "                                       .-+++=:.         @        :-++*=.                                          \r\n"
+        		+ "                                            .-=++++++===@==++++++=:                                               \r\n"
+        		+ "                                                     .                                                            \r\n"
+        		+ "\nLa ruleta ha caido en: " + RESULTADOS.get(random.nextInt(RESULTADOS.size())));
         return RESULTADOS.get(random.nextInt(RESULTADOS.size()));
     }
 
@@ -175,7 +183,7 @@ public class RuletaDeLaSuerte {
     	
         switch (panelNum) {
             case 0:
-                panel = "yo era un aventurero";
+                panel = "ee";
                 pista = "Algunos soldados les da nostalgia verte.";
                 break;
             case 1:
