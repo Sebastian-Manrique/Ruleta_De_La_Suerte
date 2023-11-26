@@ -107,7 +107,7 @@ public class RuletaDeLaSuerte {
                     System.out.println("Que quieres hacer: 'resolver frase' o 'decir letra' (escriba la opción)."); // Imprime las opciones
                     String decision = scanner.nextLine();
                     if (decision.equals("resolver frase") || decision.equals("resolver") || decision.equals("frase")) {// Resolver frase
-                        System.out.println("El panel es:" + resultadoTexto + " y la pista es: " + pista);
+                        System.out.println("El panel es:" + FRASE + " y la pista es: " + pista);
                         String respuesta = scanner.nextLine();
                         if (respuesta.equals(panel)) { // verifica la frase
                             System.out.println("Enhorabuena, ¡has acertado el panel! " + panel);
