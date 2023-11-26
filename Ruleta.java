@@ -183,7 +183,7 @@ public class RuletaDeLaSuerte {
     	
         switch (panelNum) {
             case 0:
-                panel = "ee";
+                panel = "yo era un aventurero";
                 pista = "Algunos soldados les da nostalgia verte.";
                 break;
             case 1:
