@@ -56,8 +56,6 @@ public class RuletaDeLaSuerte {
             System.out.println("Frase: " + resultadoTexto + " pista: " + pista); // Imprime la frase
 
             int resultadoRuleta = girarRuleta(); // Inicia mecánica de "ruleta"
-            System.out.println(" ");
-            System.out.println(" ");
             System.out.println(""
             		+ "                                                ..:-=+====--::.                                                   \r\n"//Dibujo de la ruleta
             		+ "                                          .-=++++=-:::**@+#---=++++-:                                             \r\n"
