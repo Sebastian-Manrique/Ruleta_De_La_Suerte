@@ -5,9 +5,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class RuletaDeLaSuerte {
-	static StringBuilder resultado = new StringBuilder();
+	 static StringBuilder resultado = new StringBuilder();
+	 static StringBuilder FRASE = new StringBuilder();
 	public static String reemplazarLetras(String texto) {
-        resultado = new StringBuilder();
+	    FRASE.setLength(0);
         
         for (int i = 0; i < texto.length(); i++) {//modifica la frase a "*"
             if (texto.charAt(i) == ' ') {
@@ -23,11 +24,10 @@ public class RuletaDeLaSuerte {
             Puede aceptar diferentes tipos de datos como parámetro y los convierte automáticamente
             a cadenas de caracteres para su concatenación.*/
         }
-        return resultado.toString(); //Lo comvierte a String
+        return FRASE.toString(); //Lo comvierte a String
     }
 
     static final List<Integer> RESULTADOS = Arrays.asList(0, 25, 50, 75, 100, 150);//Probabilidades de la ruleta
-    static StringBuilder FRASE = resultado; //Pase la frase a asteriscos
     static final int DINERO_INICIAL = 100; //Dinero principal de los jugadores
     static int[] dineroJugadores = new int[3]; //3 variables de dinero para 3 jugadores 
     static int turnoActual = 0; //Establece el turno de los jugadores, se va sumando, empieza en 0.
@@ -36,7 +36,8 @@ public class RuletaDeLaSuerte {
     static int panelNum=0;
     public static void main(String[] args) { //main
         inicializarJuego(); //Mecanica de turnos
-        Scanner scanner = new Scanner(System.in);
+        FRASE = resultado; //Pase la frase a asteriscos
+		Scanner scanner = new Scanner(System.in);
         panelActual();
          //el panel
 
@@ -134,7 +135,7 @@ public class RuletaDeLaSuerte {
 
                             adivinoCorrectamente = true; // sigue en el turno
                             System.out.println("¡Letra correcta! El jugador gana " + resultadoRuleta + " monedas.");
-                            System.out.println("¡Felicidades! Has adivinado la letra: " + panel);
+                            System.out.println("¡Felicidades! Has adivinado la letra: " + FRASE);
                         } else {
                             System.out.println("Letra incorrecta. El jugador pierde su turno.");
                             adivinoCorrectamente = false; // salta turno 
@@ -147,8 +148,9 @@ public class RuletaDeLaSuerte {
 
                 if (FRASE.indexOf("*") == -1) {
                     System.out.println("¡Felicidades! Has adivinado la frase: " + panel);
+                    hayGanador();
+                    panelNum++;
                     panelActual();
-                    // Termina el juego
                 }
 
                 siguienteTurno();
